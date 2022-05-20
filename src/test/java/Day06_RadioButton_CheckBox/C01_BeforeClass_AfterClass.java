@@ -19,7 +19,7 @@ public class C01_BeforeClass_AfterClass {
     }
     @AfterClass
     public static void tearDown(){
-        driver.close();
+       // driver.close();
     }
     @Test
     public void test01(){
