@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C01_Allerts {
+public class C01_Alerts {
     WebDriver driver;
 
 @Before
