@@ -55,5 +55,11 @@ public class C01_ExplicitlyWait extends TestBase {
         Bu durumda bekleme islemi ve locate'i birlikte yapmaliyiz
         */
 
+        WebElement itsGoneYaziElementiİmp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='message']")));
+
+        Assert.assertTrue(itsGoneYaziElementiİmp.isDisplayed());
+
+
+
     }
 }
