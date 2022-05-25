@@ -1,5 +1,6 @@
 package day_13_Cookies_WEbTables;
 
+import io.netty.handler.ssl.JdkApplicationProtocolNegotiator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
@@ -13,12 +14,11 @@ public class C01_Cookies_Webtables extends TestBase {
     public void test01() {
         // 1- Amazon anasayfaya gidin
 
+        driver.get("https://www.amazon.com");
 
-        //6- eklediginiz cookie’nin sayfaya eklendigini test edin
         //7- ismi skin olan cookie’yi silin ve silindigini test edin
         //8- tum cookie’leri silin ve silindigini test edin
 
-        driver.get("https://www.amazon.com.");
         //2- tum cookie’leri listeleyin
         Set<Cookie> cookiesSet = driver.manage().getCookies();
         System.out.println(cookiesSet);
@@ -49,18 +49,28 @@ public class C01_Cookies_Webtables extends TestBase {
         //5- ismi “en sevdigim cookie” ve degeri “cikolatali” olan
 
         Cookie cookie = new Cookie("en sevdigim cookie ", "cikolatali");
-
-        driver.manage().addCookie(cookie);
         sayac = 1;
+        cookiesSet= driver.manage().getCookies();
 
         cookiesSet = driver.manage().getCookies();
 
         for (Cookie each : cookiesSet
         ) {
             System.out.println(sayac + "inci cookie : " + each);
-
             sayac++;
-
         }
+        //6- eklediginiz cookie’nin sayfaya eklendigini test edin
+        Assert.assertTrue(cookiesSet.contains(cookie));
+
+
+        driver.manage().deleteCookieNamed("skin");
+
+        Assert.assertTrue(!cookiesSet.contains("skin"));
+
+        driver.manage().deleteAllCookies();
+        cookiesSet = driver.manage().getCookies();
+        Assert.assertTrue(cookiesSet.isEmpty());
+
     }
+
 }
